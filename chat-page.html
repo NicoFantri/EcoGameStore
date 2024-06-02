@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Eco Game Store</title>
+    <style>
+        /* Chat page specific styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+            background-color: #2f2f2f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .back-button {
+            background-color: #ffffff;
+            color: #25272a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #e9ecef;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .chat-message img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 15px;
+        }
+
+        .chat-message .message-text {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 70%;
+        }
+
+        .chat-input-container {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+            background-color: #f8f9fa;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            margin-right: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chat-send {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .chat-send:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="images/icons/chat-logo.png" alt="Eco Game Store">
+            <h3>Chat with Eco Game Store</h3>
+            <button class="back-button" onclick="goBack()">Kembali</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type your message here..." />
+            <button id="chat-send" class="chat-send">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        document.getElementById('chat-send').addEventListener('click', function() {
+            var input = document.getElementById('chat-input');
+            var message = input.value;
+            if (message.trim() !== '') {
+                var chatMessages = document.getElementById('chat-messages');
+                var newMessage = document.createElement('div');
+                newMessage.classList.add('chat-message');
+                newMessage.innerHTML = '<div class="message-text">' + message + '</div><img src="images/icons/user.png" alt="Profile Picture" />';
+                chatMessages.insertBefore(newMessage, chatMessages.firstChild);
+                input.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
